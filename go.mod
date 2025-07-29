@@ -1,4 +1,4 @@
-module main
+module github.com/nielxfb/x-com-backend
 
 go 1.24.5
 
