@@ -12,6 +12,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// db := database.getConnection()
+	// db := database.GetConnection()
 
 }
