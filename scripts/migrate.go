@@ -1,12 +1,11 @@
-package main
+package scripts
 
 import (
-    "github.com/nielxfb/x-com-backend/database"
-    "github.com/nielxfb/x-com-backend/models"
-    "github.com/nielxfb/x-com-backend/scripts"
+	"github.com/nielxfb/x-com-backend/database"
+	"github.com/nielxfb/x-com-backend/models"
 )
 
-func main() {
+func Migrate() {
     db := database.GetConnection()
 
     // Drop all tables in reverse dependency order
@@ -63,6 +62,4 @@ func main() {
     db.AutoMigrate(&models.Notification{})
     db.AutoMigrate(&models.PollOption{})
     db.AutoMigrate(&models.PollVote{})
-
-    scripts.SeedDatabase()
 }
