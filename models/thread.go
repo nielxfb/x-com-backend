@@ -31,6 +31,9 @@ type Thread struct {
 	IsMedia     bool
 	ThreadFiles []*ThreadFile `gorm:"foreignKey:ThreadID"`
 	ThreadLikes []*ThreadLike `gorm:"foreignKey:ThreadID"`
+	PollOptions []*PollOption `gorm:"foreignKey:ThreadID"`
+	CreatorID   uint
+	Creator     User `gorm:"foreignKey:CreatorID"`
 }
 
 type ThreadLike struct {
@@ -50,4 +53,20 @@ type ThreadFile struct {
 	gorm.Model
 	ThreadID uint
 	Thread   Thread `gorm:"foreignKey:ThreadID"`
+}
+
+type PollOption struct {
+	gorm.Model
+	ThreadID  uint
+	Thread    Thread `gorm:"foreignKey:ThreadID"`
+	Option    string
+	VoteCount int
+}
+
+type PollVote struct {
+	gorm.Model
+	UserID       uint
+	User         User `gorm:"foreignKey:UserID"`
+	PollOptionID uint
+	PollOption   PollOption `gorm:"foreignKey:PollOptionID"`
 }
