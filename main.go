@@ -1,17 +1,11 @@
 package main
 
 import (
-	"log"
-
-	"github.com/joho/godotenv"
+	"github.com/nielxfb/x-com-backend/database"
+	"github.com/nielxfb/x-com-backend/models"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// db := database.GetConnection()
-
+	db := database.GetConnection()
+	db.AutoMigrate(&models.User{})
 }
