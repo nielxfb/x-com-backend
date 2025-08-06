@@ -1,15 +1,18 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"api-gateway/handler"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	r := gin.Default()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, World!",
-		})
-	})
+	{
+		user := r.Group("/user")
+		user.GET("/login", handler.Login)
+	}
 
 	r.Run()
 }
